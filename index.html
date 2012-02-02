@@ -1,1 +1,74 @@
-Women labor
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript" src="lib/jquery.js"></script>
+<script type="text/javascript" src="lib/underscore.js"></script>
+<script type="text/javascript">
+$(function() {
+	var rX = 35,
+			rY = 45;
+
+	// Draw an svg object which will become the chart
+	var canvas = document.getElementById("chart"),
+			ctx = canvas.getContext('2d');
+	var industries = [],
+			names = [];
+
+	// Some helper functions for structuring the data
+	function makeIndustries(data) {
+		_.each(data, function(e, i) {
+			industries.push(e);
+			names.push(i);
+		});
+		return industries;
+	};
+
+	// Load the data
+	$.getJSON("data/punchData.json", function(data) {
+		// Calculate the max to scale the circle radii
+		var max = _(data).chain()
+										 .map(function(v,k) { return v; })
+										 .flatten()
+										 .map(function(v) {return parseInt(v.replace(",",""));})
+										 .max()
+										 .value();
+		_(makeIndustries(data)).each(function(d, i) {
+			// For every column
+			_(d).each(function(c, e) {
+				// For every row
+				ctx.beginPath();
+				ctx.fillStyle = 'rgba(56,74,114, .8)';
+				// Draw the circle
+				ctx.arc(rX+i*rX, rX+e*rY, rX*Math.pow(parseInt(c.replace(",",""))/max, 1/4), 0, 2*Math.PI, true);
+				ctx.fill();
+			});
+			// Rotate the text for X labels
+			ctx.save();
+			ctx.translate(rX+i*rX, rY*5);
+			ctx.fillStyle = "#666666";
+			ctx.textAlign = "center";
+			ctx.rotate(-Math.PI/2);
+			ctx.fillText(names[i],0,0);
+			ctx.restore();
+		});
+		// Y Labels
+		ctx.fillStyle = "#888888";
+		ctx.font = '16px sans-serif';
+		ctx.fillText("WOMEN", 1050, rY-20);
+		ctx.fillText("MEN", 1050, rY*3-20);
+		ctx.fillStyle = "#333333";
+		ctx.font = "10px sans-serif";
+		ctx.textBaseline = "bottom";
+		ctx.fillText("Total employed", 1050, rY-4);
+		ctx.fillText("Median weekly earnings", 1050, rY*2-4);
+		ctx.fillText("Total employed", 1050, rY*3-4);
+		ctx.fillText("Median weekly earnings", 1050, rY*4-4);
+	
+	});
+});
+</script>
+</head>
+<body>
+<canvas id="chart" width="1200" height="600"></canvas>
+</body>
+</html>
