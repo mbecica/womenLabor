@@ -1,8 +1,8 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<script type="text/javascript" src="lib/jquery.js"></script>
-<script type="text/javascript" src="lib/underscore.js"></script>
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="../lib/underscore-min.js"></script>
 <script type="text/javascript">
 $(function() {
 	var rX = 35,
@@ -24,7 +24,7 @@ $(function() {
 	};
 
 	// Load the data
-	$.getJSON("data/punchData.json", function(data) {
+	$.getJSON("../data/labor/punchData.json", function(data) {
 		// Calculate the max to scale the circle radii
 		var max = _(data).chain()
 										 .map(function(v,k) { return v; })
