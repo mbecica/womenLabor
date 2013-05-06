@@ -1,0 +1,25 @@
+Bureau of Justice Statistics,,,,,,,
+Filename: fvsv9410t06,,,,,,,
+"Table 6. Injured female victims of rape and sexual assault who received treatment, 1994–1998, 1999–2004, and 2005–2010",,,,,,,
+"Report title: Female Victims of Sexual Violence, 1994-2010",,,,,,,
+"Data source: BJS National Crime Victimization Survey, 1994-2010",,,,,,,
+"Authors: Michael Planty and Lynn Langton, BJS; Christopher Krebs, Marcus Berzofsky and Hope Smiley-McDonald, RTI International",,,,,,,
+Refer questions to: askbjs@usdoj.gov 202-307-0765,,,,,,,
+Date of release: 03/07/13,,,,,,,
+,,,,,,,
+"Table 6. Injured female victims of rape and sexual assault who received treatment, 1994–1998, 1999–2004, and 2005–2010",,,,,,,
+Injury,,1994–1998,,1999–2004,,2005–2010,
+,No injury,47,%,46,%,42,%
+,Injury,53,,54,,58,
+Treatment for injury/a,,100,%,100,%,100,%
+,No treatment,74,,59,,65,
+,Any treatment,26, ,41, ,35, 
+Treatment setting/b,,100,%,100,%,100,%
+,At scene or home of victim/neighbor/friend ,33,,35,,19,
+,In doctor’s office/hospital emergency room/overnight hospital,65, ,62, ,80,
+,In other location/unknown,2, !,3, !,1, !
+Note: See appendix table 10 for standard errors. ,,,,,,,
+"! Interpret with caution; estimate based on 10 or fewer sample cases, or coefficient of variation is greater than 50%. ",,,,,,,
+a/Includes only victims who were injured.,,,,,,,
+b/Includes only victims who were injured and received treatment.,,,,,,,
+"Source: Bureau of Justice Statistics, National Crime Victimization Survey, 1994–2010.",,,,,,,
