@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<head>
+<script type="text/javascript" src="lib/d3.min.js"></script>
+<script type="text/javascript" src="lib/d3.parcoords.js"></script>
+<script type="text/javascript" src="lib/underscore.js"></script>
+<script type="text/javascript" src="data/continents.js"></script>
+<link rel="stylesheet" type="text/css" href="lib/d3.parcoords.css"></style>
+<body>
+<div id="pc" class="parcoords" style="height:400px;"></div>
+<script>
+// linear color scale
+var blue_to_brown = d3.scale.linear()
+  .domain([1970, 2012])
+  .range(["steelblue", "brown"])
+  .interpolate(d3.interpolateLab);
+
+var colorgen = d3.scale.category10(),
+    colors = {};
+
+var columns = ['Country', 'Year', 'Employment', 'Employment ratio', 'Gender Wage Gap', 'Maternity Parental Leave', 'Maternity Weeks', 'Parliament Seats', 'Senior Managers', 'Youth Unemployment'];
+
+_(continents).chain()
+    .values()
+    .uniq()
+    .each(function(d,i) {
+      colors[d] = colorgen(i);
+    });
+
+var color = function(d) { return colors[continents[d]]; };
+
+var pc1;
+
+d3.csv("data/women_labor.csv", function(d) {
+
+pc1 = d3.parcoords()("#pc")
+  .data(d)
+  .color(function(d) { return color(d['Country']); })
+  .alpha(0.4)
+  .detectDimensions()
+  .dimensions(columns)
+  .render()
+  .createAxes()
+  .brushable()
+  .reorderable()
+  .interactive();
+
+});
+</script>
